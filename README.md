@@ -1,0 +1,1 @@
+Rankings have a large impact in college football. Where teams rank at the end of the season affects bowl eligibility and playoff chances. But are the rankings any good at actually telling us who the best teams are? The goal of this analysis is to explore the efficacy of rankings, and determine who effect they are or aren't. 
