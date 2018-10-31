@@ -9,7 +9,7 @@ url = 'https://www.footballdb.com/college-football/rankings.html?yr=2018'
 dat = list()
 for(y in year){
   temp_url = sub("yr=.*", paste("yr=", y, sep=""), url)
-  doc = readLines(url)
+  doc = readLines(temp_url)
   # find where poll AND week are defined for the given year
   index = grep("btn-group", doc) + 1
   # extract all href thingies
@@ -40,10 +40,13 @@ for(y in year){
       tab = rbind(tab,temp_tab)
     }
   }
-  dat[[y]] = tab
+  # wide to long
+  
+  
+  dat[[paste(y)]] = tab
 }
 
 rankings = do.call(rbind, dat)
 
 # save as .csv
-write.csv(rankings, "data/rankings.csv")
+write.csv(rankings, "data/rankings.csv", row.names=F)

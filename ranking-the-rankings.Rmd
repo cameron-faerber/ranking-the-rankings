@@ -1,0 +1,34 @@
+---
+title: "Assessing the Rankings"
+output:
+  html_document:
+    df_print: paged
+---
+
+# Introduction
+This is a simple assessment of the accuracy of the college football rankings. College football rankings are a method to assign the quality of a team, based on voting of a group of individuals. In the case of this dataset, we will assess the coaches poll vs the associated-press (AP). If a ranking system is effective, it will accurately predict winners of the games (e.g. the higher ranked team will beat the lower ranked team). 
+
+My hypothesis is that early in the season rankings are not accurate and influence later season rankings in undesirable ways. We should see, however, an increase in accuracy of overall prediction as the season progresses. 
+
+```{r}
+dat = read.csv("data/full_data.csv", stringsAsFactors=F)
+
+# overall efficacy (coaches poll)
+mean(dat$coach, na.rm=T)
+
+# ap poll
+mean(dat$ap, na.rm=T)
+
+```
+
+
+Let's look at how accuracy progressess across weeks.
+
+```{r}
+plot(factor(dat$coach)~dat$Wk, ylab="percent", xlab="week", main="coaches poll accuracy across season")
+abline(h=.5, col='red', lty=2)
+plot(factor(dat$ap)~dat$Wk, ylab="percent", xlab="week", main="AP accuracy across season")
+abline(h=.5, col='red', lty=2)
+
+```
+
